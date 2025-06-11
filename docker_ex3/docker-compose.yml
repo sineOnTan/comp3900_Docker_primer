@@ -6,8 +6,16 @@ services:
       - "6379:6379"
   # TODO: add your code here (delete this line and follow the indent conventions)
   app:
-    # TODO: you will need to add to this
+    build: ./backend
     environment:
       - REDIS_HOST=redis
+    ports:
+      - "9900:9900"
+    depends_on:
+      - redis
   frontend:
-    # TODO: you will need to add to this
+    build: ./frontend
+    depends_on:
+      - app
+    ports:
+      - "3901:3000"
